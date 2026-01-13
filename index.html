@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>hCaptcha — проверка доступа</title>
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        #accessForm {
+            max-width: 400px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .h-captcha {
+            margin: 15px 0;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #contentArea {
+            margin-top: 20px;
+            display: none; /* Изначально скрыт */
+        }
+    </style>
+</head>
+<body>
+    <!-- Блок с формой проверки (видимый изначально) -->
+    <div id="accessForm">
+        <h1>Для доступа пройдите проверку</h1>
+        <form id="captchaForm">
+            <div class="h-captcha" data-sitekey="8e6826c4-91a8-428a-a6be-43de9220ecdc"></div>
+            <button type="submit">Проверить</button>
+        </form>
+    </div>
+
+    <!-- Скрытый блок с контентом (показывается после проверки) -->
+    <div id="contentArea">
+        <h2>YTcutter</h2>
+        <p>Этот сервис работает по ссылкам</p>
+    </div>
+
+    <script>
+        // Обработчик отправки формы
+        document.getElementById('captchaForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Получаем токен от hCaptcha
+            const token = hcaptcha.getResponse();
+
+            if (token) {
+                // Успешная проверка: скрываем форму, показываем контент
+                document.getElementById('accessForm').style.display = 'none';
+                document.getElementById('contentArea').style.display = 'block';
+            } else {
+                alert('Пожалуйста, пройдите проверку');
+            }
+        });
+
+        // Сброс hCaptcha при загрузке страницы
+        window.addEventListener('load', function() {
+            hcaptcha.reset();
+        });
+    </script>
+</body>
+</html>
