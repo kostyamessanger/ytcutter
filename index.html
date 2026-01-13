@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <title>YTcutter</title>
     
+    <link rel="icon" 
+          href="https://github.com/kostyamessanger/ytcutter/blob/main/favicon.png?raw=true"
+          type="image/png">
+    
+    <!-- Скрипт hCaptcha -->
     <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+    
+    <!-- Стили -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -37,7 +44,6 @@
         }
     </style>
 </head>
-<link rel="icon" href="https://github.com/kostyamessanger/ytcutter/blob/main/favicon.png?raw=true" type="image/x-icon">
 <body>
     <!-- Блок с формой проверки (видимый изначально) -->
     <div id="accessForm">
@@ -54,6 +60,7 @@
         <p>Этот сервис работает по ссылкам</p>
     </div>
 
+    <!-- JavaScript -->
     <script>
         // Обработчик отправки формы
         document.getElementById('captchaForm').addEventListener('submit', function(event) {
